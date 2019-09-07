@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jx3recipe
+  namespace: monitoring
+  labels:
+    k8s-app: jx3recipe
+spec:
+  jobLabel: k8s-app
+  endpoints:
+  - port: port
+    interval: 30s
+    scheme: http
+  selector:
+    matchLabels:
+      run: jx3recipe
+  namespaceSelector:
+    matchNames:
+    - default
+
